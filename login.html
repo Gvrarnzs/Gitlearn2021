@@ -4,9 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AUTH</title>
 </head>
 <body>
-    lalalal
+    
 </body>
+<script>
+    class User{
+        constructor (_username,_password,_role){
+            this.username = _username
+            this.password = _password
+            this.role = _role
+        }
+    }
+    let dataUsers = [
+        new User (`dino`, `pass`,`user`),
+        new User (`admin`, `ggcuy`, `admin`)   
+    ]
+    do {
+        let menuUtama = prompt(`1.login \n 2.register\n 3.Keluar`)
+        if (menuUtama == `1`) {
+        let username = prompt(`Username`)
+        let password = prompt (`Password`)
+        let dataUser = dataUsers.filter((val) => val.username === username && val.password)
+        if(dataUser.length){
+            do {
+                let menuSub = prompt (`1.Menu Admin \n 2. Menu User \n 3.Logout`)
+                if(menuSub == 1){
+                    if (dataUser[0].role != `admin`){
+                        alert(`anda bukan admin`)
+                    }else {
+                        alert (`welcome admin`)
+                    }
+                }else if(menuSub == 2){
+                    if (dataUser[0].role != `user`){
+                        alert(`anda bukan user`)
+                    }else {
+                        alert (`welcome user`)
+                    }
+                }else if (menuSub == 3){
+                    break
+                }
+            } while (true)
+        }
+
+        } else if (menuUtama == `2`){
+            // cek dulu ada atau engga usernya
+            // kalo ada ngga bisa register
+            // sebaliknya berasil register
+            let username = prompt(`Username`)
+            let password = prompt (`Password`)
+            let dataUser = dataUsers.filter((val) => val.username === username)
+            if (dataUser.length){
+                alert(`username telah terdaftar`)
+            } else {
+                let user = new User(username,password,role)
+                dataUsers.push(user)
+                alert(`berhasil daftar`)
+            }
+
+        } else if (menuUtama === `3`){
+        break
+        }
+    } while (true)
+   
+
+
+
+
+</script>
 </html>
